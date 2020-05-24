@@ -1,0 +1,15 @@
+{
+  "name": "scada_data_connector_gateway",
+  "version": "1.0.0",
+  "node-red": {
+    "nodes": {
+      "gateway": "gateway.js"
+    }
+  },
+  "dependencies": {
+    "ip": "1.1.5",
+    "moment": "2.23.0",
+    "socket.io": "2.1.1",
+    "uuid": "3.3.2"
+  }
+}
