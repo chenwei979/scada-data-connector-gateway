@@ -66,12 +66,14 @@ module.exports = function (RED) {
         node.on('input', msg => {
             // node.send(msg);
             node.log(msg);
+            if (!node.socket) {
+                return;
+            }
 
             const data = {
                 id: msg.name,
                 value: msg.payload
             };
-
             node.socket.emit(EVENTS.Data, data);
         });
 
