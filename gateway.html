@@ -6,13 +6,16 @@
                 value: 'Gateway',
                 required: true
             },
+            dataSource: {
+                value: 'opc-ua',
+                required: true
+            },
             serverAddress: {
                 value: 'http://localhost:1888',
                 required: true
             },
             serverPath: {
-                value:'/scada_driver',
-                required: true
+                value: ''
             }
         },
         inputs: 1,
@@ -20,7 +23,7 @@
         color: '#b0dfe3',
         align: 'right',
         icon: 'join.svg',
-        label: function() {
+        label: function () {
             return this.name || 'Gateway'
         }
     })
@@ -38,6 +41,18 @@
       Name
     </label>
     <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-dataSource">
+      <i class="fa fa-list"></i>
+      Data Source
+    </label>
+    <select type="text" id="node-input-dataSource" style="width:70%;">
+      <option selected value="opc-ua">OPC UA</option>
+      <option value="wago-plc">WAGO PLC</option>
+      <option value="beckhoff-plc">Beckhoff PLC</option>
+      <option value="s7-plc">Siemens S7 PLC</option>
+    </select>
   </div>
   <div class="form-row">
     <label for="node-input-serverAddress">

@@ -1,8 +1,8 @@
 const io = require('socket.io-client');
 
 const EVENTS = {
-    Data: 'data',
-    SetValue: 'setValue'
+    SendDeviceData: 'device-data',
+    SetDeviceValue: 'device-value'
 };
 
 function assertConfig(node) {
@@ -41,7 +41,7 @@ function connectServer(node) {
         node.log(`reconnecting ${count}`);
     });
 
-    socket.on(EVENTS.SetValue, payload => {
+    socket.on(EVENTS.SetDeviceValue, payload => {
         const {id, value} = payload;
         node.send({payload: value});
     });
@@ -53,6 +53,7 @@ module.exports = function (RED) {
     function Gateway(config) {
         RED.nodes.createNode(this, config);
         this.name = config.name;
+        this.dataSource = config.dataSource;
         this.server = {
             address: config.serverAddress,
             path: config.serverPath
@@ -73,10 +74,11 @@ module.exports = function (RED) {
             // node.log(msg.topic);
             // node.log(msg.payload);
             const data = {
-                nodeId: msg.topic,
+                dataSource: node.dataSource,
+                key: msg.topic,
                 value: msg.payload
             };
-            node.socket.emit(EVENTS.Data, data);
+            node.socket.emit(EVENTS.SendDeviceData, data);
         });
 
         assertConfig(node);
