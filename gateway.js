@@ -40,7 +40,8 @@ module.exports = function (RED) {
                 project: node.project,
                 key: msg.topic,
                 path: msg.browseName,
-                value: msg.payload
+                value: msg.payload,
+                time: new Date().toISOString()
             };
             node.socket.emit(EVENTS.SendDeviceData, data);
         });
