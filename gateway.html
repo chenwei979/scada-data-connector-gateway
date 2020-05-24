@@ -1,30 +1,17 @@
 <script>
-    RED.nodes.registerType('data-item', {
-        category: 'SCADA',
+    RED.nodes.registerType('gateway', {
+        category: 'webSCADA',
         defaults: {
             name: {
                 value: '',
                 required: true
             },
-            alias: {
-                value: ''
-            },
-            description: {
-                value: ''
-            },
-            dataType: {
-                value: 'String',
+            serverAddress: {
+                value: '',
                 required: true
             },
-            permissions: {
-                value: 'r',
-                required: true
-            },
-            server: {
-                type: 'driver-server'
-            },
-            host: {
-                type: 'host-config'
+            serverPath: {
+                value:'/scada_driver'
             }
         },
         inputs: 1,
@@ -33,12 +20,12 @@
         align: 'right',
         icon: 'file.png',
         label: function() {
-            return this.alias || this.name || 'data-item'
+            return this.name || 'gateway'
         }
     })
 </script>
 
-<script type="text/x-red" data-template-name="data-item">
+<script type="text/x-red" data-template-name="gateway">
   <style>
     .form-row label {
       width: 120px
@@ -48,62 +35,25 @@
   <div class="form-row">
     <label for="node-input-name">
       <i class="fa fa-tag"></i>
-      Variable Name
+      Gateway Name
     </label>
     <input type="text" id="node-input-name">
   </div>
   <div class="form-row">
-    <label for="node-input-alias">
+    <label for="node-input-serverAddress">
       <i class="fa fa-edit"></i>
-      Display Name
+      Server Address
     </label>
-    <input type="text" id="node-input-alias">
+    <input type="text" id="node-input-serverAddress">
   </div>
   <div class="form-row">
-    <label for="node-input-description">
+    <label for="node-input-serverPath">
       <i class="fa fa-bookmark"></i>
-      Description
+      Server Path
     </label>
-    <input type="text" id="node-input-description">
-  </div>
-  <div class="form-row">
-    <label for="node-input-dataType">
-      <i class="fa fa-list"></i>
-      Type
-    </label>
-    <select type="text" id="node-input-dataType" style="width:70%;">
-      <option selected value="String">String</option>
-      <option value="Number">Number</option>
-      <option value="Boolean">Boolean</option>
-      <option value="Object">Object</option>
-    </select>
-  </div>
-  <div class="form-row">
-    <label for="node-input-permissions">
-      <i class="fa fa-shield"></i>
-      Permissions
-    </label>
-    <select type="text" id="node-input-permissions" style="width:70%;">
-      <option selected value="r">READ</option>
-      <option value="w">WRITE</option>
-      <option value="rw">READ AND WRITE</option>
-    </select>
-  </div>
-  <div class="form-row">
-    <label for="node-input-server">
-      <i class="fa fa-server"></i>
-      Driver
-    </label>
-    <input type="text" id="node-input-server">
-  </div>
-  <div class="form-row">
-    <label for="node-input-host">
-      <i class="fa fa-cogs"></i>
-      Host
-    </label>
-    <input type="text" id="node-input-host">
+    <input type="text" id="node-input-serverPath">
   </div>
 </script>
-<script type="text/x-red" data-help-name="data-item">
-  Variable definition for SCADA driver.
+<script type="text/x-red" data-help-name="gateway">
+  Gateway
 </script>
