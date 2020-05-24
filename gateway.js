@@ -14,6 +14,7 @@ module.exports = function (RED) {
     function Gateway(config) {
         RED.nodes.createNode(this, config);
         this.name = config.name;
+        this.project = config.project;
         this.dataSource = config.dataSource;
         this.server = {
             address: config.serverAddress,
@@ -36,7 +37,9 @@ module.exports = function (RED) {
             // node.log(msg.payload);
             const data = {
                 dataSource: node.dataSource,
+                project: node.project,
                 key: msg.topic,
+                path: msg.browseName,
                 value: msg.payload
             };
             node.socket.emit(EVENTS.SendDeviceData, data);

@@ -6,6 +6,10 @@
                 value: 'Gateway',
                 required: true
             },
+            project: {
+                value: '',
+                required: true
+            },
             dataSource: {
                 value: 'opc-ua',
                 required: true
@@ -41,6 +45,13 @@
       Name
     </label>
     <input type="text" id="node-input-name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-project">
+      <i class="fa fa-tag"></i>
+      Project
+    </label>
+    <input readonly type="text" id="node-input-project">
   </div>
   <div class="form-row">
     <label for="node-input-dataSource">
