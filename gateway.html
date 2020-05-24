@@ -3,22 +3,23 @@
         category: 'webSCADA',
         defaults: {
             name: {
-                value: '',
+                value: 'gateway',
                 required: true
             },
             serverAddress: {
-                value: '',
+                value: 'http://localhost:1888',
                 required: true
             },
             serverPath: {
-                value:'/scada_driver'
+                value:'/scada_driver',
+                required: true
             }
         },
         inputs: 1,
         outputs: 1,
         color: '#b0dfe3',
         align: 'right',
-        icon: 'file.png',
+        icon: 'join.svg',
         label: function() {
             return this.name || 'gateway'
         }
@@ -30,26 +31,25 @@
     .form-row label {
       width: 120px
     }
-
   </style>
   <div class="form-row">
     <label for="node-input-name">
       <i class="fa fa-tag"></i>
-      Gateway Name
+      Name
     </label>
     <input type="text" id="node-input-name">
   </div>
   <div class="form-row">
     <label for="node-input-serverAddress">
-      <i class="fa fa-edit"></i>
-      Server Address
+      <i class="fa fa-cloud"></i>
+      Server
     </label>
     <input type="text" id="node-input-serverAddress">
   </div>
   <div class="form-row">
     <label for="node-input-serverPath">
-      <i class="fa fa-bookmark"></i>
-      Server Path
+      <i class="fa fa-random"></i>
+      Path
     </label>
     <input type="text" id="node-input-serverPath">
   </div>
