@@ -5,7 +5,7 @@ const EVENTS = {
     SetValue: 'setValue'
 };
 
-function assertConfig() {
+function assertConfig(node) {
     if (!node.server || !node.server.address) {
         throw new Error("Missing gateway server address.");
     }
@@ -77,8 +77,8 @@ module.exports = function (RED) {
             node.socket.emit(EVENTS.Data, data);
         });
 
-        assertConfig();
-        connectServer();
+        assertConfig(node);
+        connectServer(node);
     }
 
     RED.nodes.registerType('gateway', Gateway);
