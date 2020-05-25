@@ -36,12 +36,12 @@ module.exports = function (RED) {
             // node.log(msg.topic);
             // node.log(msg.payload);
             const data = {
-                dataSource: node.dataSource,
-                project: node.project,
-                key: msg.topic,
-                path: msg.browseName,
-                value: msg.payload,
-                time: new Date().toISOString()
+                d: node.dataSource, // dataSource
+                pj: node.project, // project
+                // k: msg.topic, // key
+                p: msg.browseName, // path
+                v: msg.payload, // value
+                t: new Date().toISOString() // time
             };
             node.socket.emit(EVENTS.SendDeviceData, data);
         });
